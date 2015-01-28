@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Business Reporting Using R Shiny</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Business Reporting Using R Shiny">
+  <meta name="author" content="Cheng Liu">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Business Reporting Using R Shiny</h1>
+    <h2></h2>
+    <p>Cheng Liu<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Who Are We</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Analytics team that supports <a href="http://www.ebaypartnernetwork.com">eBay Partern Network</a> (ePN).</p>
+
+<div style='text-align: center;'>
+  <img height='450' src='./Pic/Slide1.jpg' />
+</div></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Who Are We</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>We actively engage with business unit to find business insight across the network.</p>
+
+<div style='text-align: center;'>
+  <img height='380' src='./Pic/WordItOut-word-cloud-616112.png' />
+</div></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Analytics: Ideal Vs. Reality</h2>
+  </hgroup>
+  <article data-timings="">
+    <!-- PieChart generated in R 3.0.2 by googleVis 0.5.7 package -->
+
+<!-- Sun Jan 25 21:46:15 2015 -->
+
+<!-- jsHeader -->
+
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataPieChartID2a665c839b63 () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+ "Data Processing",
+20 
+],
+[
+ "Finding Data Insight",
+80 
+] 
+];
+data.addColumn('string','Activity');
+data.addColumn('number','Per');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartPieChartID2a665c839b63() {
+var data = gvisDataPieChartID2a665c839b63();
+var options = {};
+options["allowHtml"] = true;
+options["title"] = "";
+options["legend"] = {position: 'labeled'};
+options["pieSliceText"] = "none";
+options["height"] =    500;
+options["width"] =   1000;
+
+    var chart = new google.visualization.PieChart(
+    document.getElementById('PieChartID2a665c839b63')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "corechart";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartPieChartID2a665c839b63);
+})();
+function displayChartPieChartID2a665c839b63() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+
+<!-- jsChart -->  
+
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID2a665c839b63"></script>
+ 
+
+<!-- divChart -->
+
+<div id="PieChartID2a665c839b63" 
+  style="width: 1000; height: 500;">
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Analytics: Ideal Vs. Reality</h2>
+  </hgroup>
+  <article data-timings="">
+    <!-- PieChart generated in R 3.0.2 by googleVis 0.5.7 package -->
+
+<!-- Sun Jan 25 21:46:15 2015 -->
+
+<!-- jsHeader -->
+
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataPieChartID2a66444eb008 () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+ "Data Processing",
+80 
+],
+[
+ "Finding Data Insight",
+20 
+] 
+];
+data.addColumn('string','Activity');
+data.addColumn('number','Per');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartPieChartID2a66444eb008() {
+var data = gvisDataPieChartID2a66444eb008();
+var options = {};
+options["allowHtml"] = true;
+options["title"] = "";
+options["legend"] = {position: 'labeled'};
+options["pieSliceText"] = "none";
+options["height"] =    500;
+options["width"] =   1000;
+
+    var chart = new google.visualization.PieChart(
+    document.getElementById('PieChartID2a66444eb008')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "corechart";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartPieChartID2a66444eb008);
+})();
+function displayChartPieChartID2a66444eb008() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+
+<!-- jsChart -->  
+
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID2a66444eb008"></script>
+ 
+
+<!-- divChart -->
+
+<div id="PieChartID2a66444eb008" 
+  style="width: 1000; height: 500;">
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Layers of Reporting</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Raw data</p></li>
+<li><p>Static reports: Excel, HTML</p></li>
+<li><p>Trandional dashboards: Tableau, Microstrategy</p></li>
+<li><p><font color = 'blue'> New dashboards/platforms: R Shiny Server</font></p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>What is Shiny</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p><a href="http://shiny.rstudio.com/">Shiny</a> by <a href="http://www.rstudio.com/">Rstudio</a> is a web application framework for R</p>
+
+<div style='text-align: center;'>
+  <img height='80' src='./Pic/shiny.png' />
+</div>
+
+<div>
+<iframe src = 'http://orangelliu.shinyapps.io/TextBook/'></iframe>
+</div></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>R package: googleVis</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="http://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html">googleVis</a> Provide interface between <a href="http://www.r-project.org/">R</a> and <a href="https://developers.google.com/chart/">Google Charts</a>.</li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-3.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>R package: googleVis</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="http://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html">googleVis</a> Provide interface between <a href="http://www.r-project.org/">R</a> and <a href="https://developers.google.com/chart/">Google Charts</a>.</li>
+</ul>
+
+<!-- LineChart generated in R 3.0.2 by googleVis 0.5.7 package -->
+
+<!-- Sun Jan 25 21:22:51 2015 -->
+
+<!-- jsHeader -->
+
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataLineChartID293e67522b3b () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+ new Date(2014,10,3),
+52.32,
+6985900 
+],
+[
+ new Date(2014,10,4),
+52.56,
+7727900 
+],
+[
+ new Date(2014,10,5),
+53.47,
+10761800 
+],
+[
+ new Date(2014,10,6),
+53.62,
+5893400 
+],
+[
+ new Date(2014,10,7),
+53.35,
+5415100 
+],
+[
+ new Date(2014,10,10),
+53.47,
+5264800 
+],
+[
+ new Date(2014,10,11),
+54.17,
+7094800 
+],
+[
+ new Date(2014,10,12),
+53.81,
+6058900 
+],
+[
+ new Date(2014,10,13),
+54.06,
+7812900 
+],
+[
+ new Date(2014,10,14),
+54.27,
+4971300 
+],
+[
+ new Date(2014,10,17),
+54.37,
+7775000 
+],
+[
+ new Date(2014,10,18),
+54.81,
+6966200 
+],
+[
+ new Date(2014,10,19),
+55.33,
+6721400 
+],
+[
+ new Date(2014,10,20),
+54.51,
+5554200 
+],
+[
+ new Date(2014,10,21),
+54.75,
+8439900 
+],
+[
+ new Date(2014,10,24),
+54.68,
+6067100 
+],
+[
+ new Date(2014,10,25),
+54.23,
+6635400 
+],
+[
+ new Date(2014,10,26),
+54.56,
+3989500 
+],
+[
+ new Date(2014,10,28),
+54.9,
+2969600 
+],
+[
+ new Date(2014,11,1),
+54.76,
+6802300 
+],
+[
+ new Date(2014,11,2),
+54.86,
+5964300 
+],
+[
+ new Date(2014,11,3),
+55.03,
+5359800 
+],
+[
+ new Date(2014,11,4),
+54.63,
+5646600 
+],
+[
+ new Date(2014,11,5),
+54.89,
+5588500 
+],
+[
+ new Date(2014,11,8),
+55.35,
+13072400 
+],
+[
+ new Date(2014,11,9),
+54.59,
+10997600 
+] 
+];
+data.addColumn('date','Date');
+data.addColumn('number','Open');
+data.addColumn('number','Volume');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartLineChartID293e67522b3b() {
+var data = gvisDataLineChartID293e67522b3b();
+var options = {};
+options["allowHtml"] = true;
+options["title"] = "eBay Inc. Stock Open Price";
+options["height"] =    500;
+options["width"] =    900;
+options["series"] = [{targetAxisIndex: 0, pointSize: 6}, {targetAxisIndex:1, pointSize: 6}];
+options["vAxis"] = [{format:'$#,###0.0'}, {format:'#,###'}];
+options["legend"] = "bottom";
+
+    var chart = new google.visualization.LineChart(
+    document.getElementById('LineChartID293e67522b3b')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "corechart";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartLineChartID293e67522b3b);
+})();
+function displayChartLineChartID293e67522b3b() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+
+<!-- jsChart -->  
+
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartLineChartID293e67522b3b"></script>
+ 
+
+<!-- divChart -->
+
+<div id="LineChartID293e67522b3b" 
+  style="width: 900; height: 500;">
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>R package: googleVis</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>HTML attributes are accepted</li>
+</ul>
+
+<pre><code class="r">&lt;p style=&quot;background-color:Aquamarine&quot;&gt;&lt;/p&gt;
+</code></pre>
+
+<ul>
+<li></li>
+</ul>
+
+<!-- Table generated in R 3.0.2 by googleVis 0.5.7 package -->
+
+<!-- Sun Jan 25 21:22:51 2015 -->
+
+<!-- jsHeader -->
+
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataTableID293e4394637b () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+ "2014-11-03",
+"<p style=\"text-align:right\">$52.32",
+" </p>" 
+],
+[
+ "2014-11-04",
+"<p style=\"text-align:right\">$52.56",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.5% </p>" 
+],
+[
+ "2014-11-05",
+"<p style=\"text-align:right\">$53.47",
+"<p style=\"background-color:Aquamarine;text-align:right\">1.7% </p>" 
+],
+[
+ "2014-11-06",
+"<p style=\"text-align:right\">$53.62",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.3% </p>" 
+],
+[
+ "2014-11-07",
+"<p style=\"text-align:right\">$53.35",
+"<p style=\"background-color:Pink;text-align:right\">-0.5% </p>" 
+],
+[
+ "2014-11-10",
+"<p style=\"text-align:right\">$53.47",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.2% </p>" 
+],
+[
+ "2014-11-11",
+"<p style=\"text-align:right\">$54.17",
+"<p style=\"background-color:Aquamarine;text-align:right\">1.3% </p>" 
+],
+[
+ "2014-11-12",
+"<p style=\"text-align:right\">$53.81",
+"<p style=\"background-color:Pink;text-align:right\">-0.7% </p>" 
+],
+[
+ "2014-11-13",
+"<p style=\"text-align:right\">$54.06",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.5% </p>" 
+],
+[
+ "2014-11-14",
+"<p style=\"text-align:right\">$54.27",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.4% </p>" 
+],
+[
+ "2014-11-17",
+"<p style=\"text-align:right\">$54.37",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.2% </p>" 
+],
+[
+ "2014-11-18",
+"<p style=\"text-align:right\">$54.81",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.8% </p>" 
+],
+[
+ "2014-11-19",
+"<p style=\"text-align:right\">$55.33",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.9% </p>" 
+],
+[
+ "2014-11-20",
+"<p style=\"text-align:right\">$54.51",
+"<p style=\"background-color:Pink;text-align:right\">-1.5% </p>" 
+],
+[
+ "2014-11-21",
+"<p style=\"text-align:right\">$54.75",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.4% </p>" 
+],
+[
+ "2014-11-24",
+"<p style=\"text-align:right\">$54.68",
+"<p style=\"background-color:Pink;text-align:right\">-0.1% </p>" 
+],
+[
+ "2014-11-25",
+"<p style=\"text-align:right\">$54.23",
+"<p style=\"background-color:Pink;text-align:right\">-0.8% </p>" 
+],
+[
+ "2014-11-26",
+"<p style=\"text-align:right\">$54.56",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.6% </p>" 
+],
+[
+ "2014-11-28",
+"<p style=\"text-align:right\">$54.9",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.6% </p>" 
+],
+[
+ "2014-12-01",
+"<p style=\"text-align:right\">$54.76",
+"<p style=\"background-color:Pink;text-align:right\">-0.3% </p>" 
+],
+[
+ "2014-12-02",
+"<p style=\"text-align:right\">$54.86",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.2% </p>" 
+],
+[
+ "2014-12-03",
+"<p style=\"text-align:right\">$55.03",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.3% </p>" 
+],
+[
+ "2014-12-04",
+"<p style=\"text-align:right\">$54.63",
+"<p style=\"background-color:Pink;text-align:right\">-0.7% </p>" 
+],
+[
+ "2014-12-05",
+"<p style=\"text-align:right\">$54.89",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.5% </p>" 
+],
+[
+ "2014-12-08",
+"<p style=\"text-align:right\">$55.35",
+"<p style=\"background-color:Aquamarine;text-align:right\">0.8% </p>" 
+],
+[
+ "2014-12-09",
+"<p style=\"text-align:right\">$54.59",
+"<p style=\"background-color:Pink;text-align:right\">-1.4% </p>" 
+] 
+];
+data.addColumn('string','Date');
+data.addColumn('string','Open');
+data.addColumn('string','DoD Change');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartTableID293e4394637b() {
+var data = gvisDataTableID293e4394637b();
+var options = {};
+options["allowHtml"] = true;
+options["vAxis"] = {format:'$#,#0.0'};
+options["page"] = "enable";
+options["pageSize"] =      7;
+
+    var chart = new google.visualization.Table(
+    document.getElementById('TableID293e4394637b')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "table";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartTableID293e4394637b);
+})();
+function displayChartTableID293e4394637b() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+
+<!-- jsChart -->  
+
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID293e4394637b"></script>
+ 
+
+<!-- divChart -->
+
+<div id="TableID293e4394637b" 
+  style="width: 500; height: automatic;">
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Shiny Provides Nice Control Widgets</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><div>
+    <iframe src = 'http://orangelliu.shinyapps.io/Widget'></iframe>
+  </div></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>... and More Widgets</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><div>
+    <iframe src = 'http://orangelliu.shinyapps.io/Widget2/'></iframe>
+  </div></p>
+
+<hr>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>More Advanced Dashboards</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><div>
+    <iframe src = 'http://orangelliu.shinyapps.io/Stacked/'></iframe>
+  </div></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>More Advanced Dashboards</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><div>
+    <iframe src = 'http://orangelliu.shinyapps.io/Waterfall'></iframe>
+  </div></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>More Advanced Dashboards</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><div>
+    <iframe src = 'http://orangelliu.shinyapps.io/Weather'></iframe>
+  </div></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>More Advanced Dashboards</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Building platform</p></li>
+<li><p>Download/<font color = 'blue'>Upload</font> raw data</p></li>
+<li><p>Direct connection to DW</p></li>
+<li><p><a href="http://10.9.202.204:8787/">R Web-based Console</a></p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Benifits</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Powerful (R Based)</p></li>
+<li><p>Highly customizable</p></li>
+<li><p>No JavaScript or HTML experience is required</p></li>
+<li><p><font color = 'blue'>Zero</font> cost for open source edition ($9,995/year for Pro)</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>How to Make a Good Dashboard</h2>
+  </hgroup>
+  <article data-timings="">
+    <div style='text-align: center;'>
+      <img height='500' src='./Pic/system1.jpg' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>How to Make a Good Dashboard</h2>
+  </hgroup>
+  <article data-timings="">
+    <div style='text-align: center;'>
+      <img height='500' src='./Pic/system3.jpg' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>How to Make a Good Dashboard</h2>
+  </hgroup>
+  <article data-timings="">
+    <div style='text-align: center;'>
+      <img height='500' src='./Pic/Slide3.jpg' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>How to Make a Good Dashboard</h2>
+  </hgroup>
+  <article data-timings="">
+    <div style='text-align: center;'>
+      <img height='500' src='./Pic/Slide4.jpg' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>How to Make a Good Dashboard</h2>
+  </hgroup>
+  <article data-timings="">
+    <div style='text-align: center;'>
+      <img height='500' src='./Pic/Slide5.jpg' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>How to Make a Good Dashboard</h2>
+  </hgroup>
+  <article data-timings="">
+    <div style='text-align: center;'>
+      <img height='500' src='./Pic/Slide6.jpg' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>How to Make a Good Dashboard</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>&nbsp</p>
+
+<p>&nbsp</p>
+
+<p style="text-align:center"><font size='6'><b>A user interface (<font color = 'blue'> A dashboard</font>) is like a joke.</b></font></p>
+
+<p style="text-align:center"><font size='6'><b>If you have to explain it,</b></font></p>
+
+<p style="text-align:center"><font size='6'><b>it’s not that good.</b></font></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <article data-timings="">
+    <p>&nbsp</p>
+
+<p>&nbsp</p>
+
+<p>&nbsp</p>
+
+<p>&nbsp</p>
+
+<p>&nbsp</p>
+
+<p>&nbsp</p>
+
+<p>&nbsp</p>
+
+<p style="text-align:center"><font size='50'><b>Thank you!</b></font></h1>
+<p>&nbsp</p>
+
+<p style="text-align:center"><font size='5'><b>Cheng Liu: orangelliu@gmail.com</b></font></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Who Are We'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Who Are We'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Analytics: Ideal Vs. Reality'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Analytics: Ideal Vs. Reality'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Layers of Reporting'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='What is Shiny'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='R package: googleVis'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='R package: googleVis'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='R package: googleVis'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Shiny Provides Nice Control Widgets'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='... and More Widgets'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='More Advanced Dashboards'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='More Advanced Dashboards'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='More Advanced Dashboards'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='More Advanced Dashboards'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Benifits'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='How to Make a Good Dashboard'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='How to Make a Good Dashboard'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='How to Make a Good Dashboard'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='How to Make a Good Dashboard'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='How to Make a Good Dashboard'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='How to Make a Good Dashboard'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='How to Make a Good Dashboard'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title=''>
+         24
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
